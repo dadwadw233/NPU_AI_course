@@ -1,7 +1,10 @@
+import matplotlib.pyplot as plt
+import numpy as np
+import matplotlib
 class graph:
     pointNum = 0
     isDirectional = False
-    typeNum = ()
+    typeNum = []
     edgeNum = 0
     map = {}
 
@@ -15,10 +18,11 @@ class graph:
             v = data[1]
             t.append(pointB)
             v.append(type)
+            self.typeNum.append(type)
             target = [t, v]
             self.map[pointA] = target
             self.edgeNum = self.edgeNum + 1
-            if self.map.get(pointB) is not None:
+            if self.map.get(pointB) is not None and self.isDirectional is False:
                 data = self.map.get(pointB)
                 t = data[0]
                 v = data[1]
@@ -26,20 +30,23 @@ class graph:
                 v.append(type)
                 target = [t, v]
                 self.map[pointB] = target
-            else:
+            elif self.isDirectional is False:
                 t = [pointA]
                 v = [type]
                 target = [t, v]
                 self.map[pointB] = target
                 self.pointNum = self.pointNum + 1
+            else:
+                self.pointNum = self.pointNum + 1
         else:
             t = [pointB]
             v = [type]
+            self.typeNum.append(type)
             target = [t, v]
             self.map[pointA] = target
             self.pointNum = self.pointNum + 1
             self.edgeNum = self.edgeNum + 1
-            if self.map.get(pointB) is not None:
+            if self.map.get(pointB) is not None and self.isDirectional is False:
                 data = self.map.get(pointB)
                 t = data[0]
                 v = data[1]
@@ -47,11 +54,13 @@ class graph:
                 v.append(type)
                 target = [t, v]
                 self.map[pointB] = target
-            else:
+            elif self.isDirectional is False:
                 t = [pointA]
                 v = [type]
                 target = [t, v]
                 self.map[pointB] = target
+                self.pointNum = self.pointNum + 1
+            else:
                 self.pointNum = self.pointNum + 1
 
     def print_(self):
@@ -77,4 +86,32 @@ class graph:
         print(self.map)
 
     def get_average_degree(self):
-        return int(self.edgeNum / (self.pointNum / 2))
+        return self.edgeNum * 2 / self.pointNum
+
+    def clean(self):
+        self.map.clear()
+        self.typeNum.clear()
+        self.edgeNum = 0
+        self.pointNum = 0
+
+    def get_type_num(self):
+        return len(set(self.typeNum))
+
+    def count_type(self, key):
+        return self.typeNum.count(key)
+
+    def test(self):
+        return len(self.map[1][0])
+
+    def draw_normalized_histogram(self):
+        maxnum = 0;
+        sum = self.pointNum
+        data = {}
+        for i in self.map:
+            cnt = len(self.map[i][0])
+            if data.get(cnt) is None:
+                data[cnt] = 1
+            else:
+                data[cnt] = data[cnt] + 1
+        data = sorted(data.items(), key=lambda kv: kv[0])
+        print(data)
