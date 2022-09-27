@@ -117,13 +117,14 @@ class graph:
         data = sorted(data.items(), key=lambda kv: kv[0])
         x = []
         y = []
+        cnt = 0
         for i in data:
             x.append(i[0])
-            y.append(i[1])
+            y.append(i[1]/self.pointNum)
 
         x = np.array(x)
         y = np.array(y)
-        print(y)
+        print(self.edgeNum)
         #plt.hist(data_, density=True, bins=len(data_), facecolor="blue", edgecolor="blue")
         plt.bar(x, y)
         plt.xlabel("k")

@@ -13,6 +13,7 @@ if __name__ == '__main__':
     print("网络中节点的数量为:")
     print(test)
     test = handle.get_edge_num()
+    handle.draw_normalized_histogram()
     print("网络中边的数量为:")
     print(test)
     print("**********************************************************************")
