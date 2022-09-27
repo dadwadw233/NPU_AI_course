@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib
+matplotlib.rcParams['axes.unicode_minus']=False     # 正常显示负号
 class graph:
     pointNum = 0
     isDirectional = False
@@ -114,4 +115,15 @@ class graph:
             else:
                 data[cnt] = data[cnt] + 1
         data = sorted(data.items(), key=lambda kv: kv[0])
-        print(data)
+        data_ = []
+        for i in data:
+            data_.append(i[1])
+
+        data_ = np.array(data_)
+        print(data_)
+        plt.hist(data_, density=True, bins=len(data_), facecolor="blue", edgecolor="blue")
+
+        plt.xlabel("k")
+        plt.ylabel("P(k)")
+        plt.title("Degree Distribution")
+        plt.show()

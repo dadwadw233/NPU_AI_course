@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/NPU_AI_course.iml" filepath="$PROJECT_DIR$/.idea/NPU_AI_course.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/NPU_AI_courses.iml" filepath="$PROJECT_DIR$/.idea/NPU_AI_courses.iml" />
     </modules>
   </component>
 </project>
