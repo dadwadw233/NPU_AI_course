@@ -115,14 +115,17 @@ class graph:
             else:
                 data[cnt] = data[cnt] + 1
         data = sorted(data.items(), key=lambda kv: kv[0])
-        data_ = []
+        x = []
+        y = []
         for i in data:
-            data_.append(i[1])
+            x.append(i[0])
+            y.append(i[1])
 
-        data_ = np.array(data_)
-        print(data_)
-        plt.hist(data_, density=True, bins=len(data_), facecolor="blue", edgecolor="blue")
-
+        x = np.array(x)
+        y = np.array(y)
+        print(y)
+        #plt.hist(data_, density=True, bins=len(data_), facecolor="blue", edgecolor="blue")
+        plt.bar(x, y)
         plt.xlabel("k")
         plt.ylabel("P(k)")
         plt.title("Degree Distribution")
