@@ -1,20 +1,28 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 import graph
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
     handle = graph.graph()
-    handle.add(0,1,2)
-    handle.add(0,2,3)
-    handle.print_()
+    handle.add(1, 2, 1)
+    handle.add(1, 4, 3)
+    handle.add(2, 4, 1)
+    handle.add(4, 3, 2)
+    test = handle.get_point_num()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    print("Q1")
+    print("网络中节点的数量为:")
+    print(test)
+    test = handle.get_edge_num()
+    print("网络中边的数量为:")
+    print(test)
+
+    print("Q2")
+    print("度最大的前三个节点依次是：")
+    print(handle.get_top_n_point(3))
+    print("节点的平均度:")
+    print(handle.get_average_degree())
+
+    print("Q3")
+    print("度最大的前三个节点依次是：")
+    print(handle.get_top_n_point(3))
+    print("节点的平均度:")
+    print(handle.get_average_degree())
