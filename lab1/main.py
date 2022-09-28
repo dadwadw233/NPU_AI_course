@@ -13,7 +13,6 @@ if __name__ == '__main__':
     print("网络中节点的数量为:")
     print(test)
     test = handle.get_edge_num()
-    handle.draw_normalized_histogram()
     print("网络中边的数量为:")
     print(test)
     print("**********************************************************************")
@@ -40,4 +39,40 @@ if __name__ == '__main__':
 
     print("**********************************************************************")
     print("Q4")
-    handle.draw_normalized_histogram()
+    #handle.draw_normalized_histogram()
+
+
+    print("**********************************************************************")
+    print("Q5")
+    #handle.clean()
+
+    #handle.add(0,1,5)
+    #handle.add(0,2,2)
+    #handle.add(0,4,3)
+    #handle.add(0,3,2)
+    #handle.add(3,4,1)
+    #handle.add(1,2,1)
+    print("8到309的所有最短路：")
+    print(handle.cal_min_value_path(8, 309)[0])
+    print("67到850的所有最短路：")
+    print(handle.cal_min_value_path(67, 850)[0])
+    print("990到1256的所有最短路：")
+    print(handle.cal_min_value_path(990, 1256)[0])
+
+    print("**********************************************************************")
+    print("Q6")
+    #handle.get_clustering_coefficient()
+
+    print("**********************************************************************")
+    print("Q7")
+    handle.clean()
+
+    handle.add(0,1,1)
+    handle.add(1,2,1)
+    handle.add(1,3,1)
+    handle.add(2,3,1)
+
+    handle.add_point(4)
+    handle.add(4,5,1)
+    handle.add_point(6)
+    handle.get_connected_component_num()

@@ -1,7 +1,13 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib
-matplotlib.rcParams['axes.unicode_minus']=False     # 正常显示负号
+
+import sys
+sys.setrecursionlimit(100000)
+
+matplotlib.rcParams['axes.unicode_minus'] = False  # 正常显示负号
+
+
 class graph:
     pointNum = 0
     isDirectional = False
@@ -63,7 +69,8 @@ class graph:
                 self.pointNum = self.pointNum + 1
             else:
                 self.pointNum = self.pointNum + 1
-
+    def add_point(self,point):
+        self.map[point] = [[],[]]
     def print_(self):
         for i in self.map:
             print(i)
@@ -120,14 +127,136 @@ class graph:
         cnt = 0
         for i in data:
             x.append(i[0])
-            y.append(i[1]/self.pointNum)
+            y.append(i[1] / self.pointNum)
 
         x = np.array(x)
         y = np.array(y)
-        print(self.edgeNum)
-        #plt.hist(data_, density=True, bins=len(data_), facecolor="blue", edgecolor="blue")
+        # plt.hist(data_, density=True, bins=len(data_), facecolor="blue", edgecolor="blue")
         plt.bar(x, y)
         plt.xlabel("k")
         plt.ylabel("P(k)")
         plt.title("Degree Distribution")
         plt.show()
+
+    def cal_min_value_path(self, start, end):
+        # 初始化集合s
+        s = {start: [[[start]], 0]}
+        u = {}
+        # 初始化集合u中与start直接连通的节点
+        for i in range(len(self.map[start][0])):
+            temp = [[[start, self.map[start][0][i]]], 1]
+            u[self.map[start][0][i]] = list.copy(temp)
+        # 初始化u中其他不直接与起点连通的节点
+        for i in self.map:
+            if i == start:
+                continue
+            elif u.get(i) is None:
+                noData = [[[]], 114514]
+                u[i] = noData
+            else:
+                continue
+
+        while len(u) != 0:
+            u_ = sorted(u.items(), key=lambda kv: kv[1][1])  # 对字典U按照value进行排序
+            target = u_[0][0]
+            pathList = u_[0][1][0]
+            tempValue = u_[0][1][1]
+            # 更新s
+            s[target] = list.copy([pathList, tempValue])
+            # 更新u
+            u.pop(target)
+            if self.map.get(target) is None:
+                continue
+
+            else:
+                pointList = self.map.get(target)[0]
+                valueList = self.map.get(target)[1]
+
+            for i in range(len(pointList)):
+                point = pointList[i]
+                target2pointValue = valueList[i]
+                start2targetPath = s[target][0]
+                start2targetValue = s[target][1]
+                if point == start:
+                    continue
+                if(u.get(point) is None):
+                    continue
+                start2pointValue = u[point][1]
+
+
+
+                if start2targetValue + 1 < start2pointValue:
+                    u[point][0].clear()
+                    for j in range(len(start2targetPath)):
+                        newPath = list.copy(start2targetPath[j])
+                        newPath.append(point)
+                        u[point][0].append(newPath)
+                    u[point][1] = start2targetValue + 1
+
+                elif start2targetValue + 1 == start2pointValue:
+                        for j in range(len(start2targetPath)):
+                            newPath = list.copy(start2targetPath[j])
+                            newPath.append(point)
+                            u[point][0].append(newPath)
+                else:
+                    continue
+
+        return s[end]
+
+    def get_clustering_coefficient(self):
+        dist = {}
+        sum = 0
+        pointList = sorted(self.map)
+        for i in pointList:
+            e = 0
+            neighbors = list.copy(self.map[i][0])
+            k = len(neighbors)
+
+            for j in neighbors:
+                for h in neighbors:
+                    if i == j:
+                        continue
+                    else:
+                        temp = list.copy(self.map[j][0])
+                        if temp.count(h) == 1:
+                            e = e+1
+                        else:
+                            continue
+            if k == 1:
+                c = 0
+            else:
+                c = e / (k * (k - 1))
+
+            sum = sum + c
+            dist[i] = format(c,'.3f')
+
+        print("每个点的聚集系数：")
+        print(dist)
+        print("平均聚集系数")
+        print('%.3f' %(sum/len(pointList)))
+
+    def get_connected_component_num(self):
+        sum = 0;
+        check = {}
+        pointList = sorted(self.map)
+        start = pointList[0]
+        while len(pointList) != 0:
+            start = pointList[0]
+            self.dfs_loop(start, pointList)
+            sum = sum+1
+
+        print(sum)
+    def dfs_loop(self,n,pointList):
+        if len(self.map[n][0]) == 0:
+            pointList.remove(n)
+            return
+        for i in self.map[n][0]:
+            if pointList.count(i) == 1:
+                pointList.remove(i)
+                self.dfs_loop(i, pointList)
+            else:
+                continue
+
+
+
+
