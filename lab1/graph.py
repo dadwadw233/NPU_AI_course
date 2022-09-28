@@ -257,6 +257,39 @@ class graph:
             else:
                 continue
 
+    def get_Q8_result(self):
+        pointList = sorted(self.map)
+        sum = 0
+        for i in pointList:
+            value = list.copy(self.map[i][1])
+            if value.count(47) < 2:
+                continue
+            else:
+                indexList = []
+                for j in range(len(value)):
+                    if value[j] == 47:
+                        indexList.append(j)
+                    else:
+                        continue
+            for m in indexList:
+                for n in indexList:
+                    pointA = self.map[i][0][m]
+                    pointB = self.map[i][0][n]
+                    if m == n :
+                        continue
+                    else:
+                        if (self.map[pointA][0]).count(pointB) == 0:
+                            continue
+                        else:
+                            temp = (self.map[pointA][0]).index(pointB)
+                            if(self.map[pointA][1][temp] == 73):
+                                sum = sum+1
+                            else:
+                                continue
+        return int(sum/2)
+
+
+
 
 
 

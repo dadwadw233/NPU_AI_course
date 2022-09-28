@@ -39,7 +39,7 @@ if __name__ == '__main__':
 
     print("**********************************************************************")
     print("Q4")
-    #handle.draw_normalized_histogram()
+    handle.draw_normalized_histogram()
 
 
     print("**********************************************************************")
@@ -61,7 +61,7 @@ if __name__ == '__main__':
 
     print("**********************************************************************")
     print("Q6")
-    #handle.get_clustering_coefficient()
+    handle.get_clustering_coefficient()
 
     print("**********************************************************************")
     print("Q7")
@@ -76,3 +76,17 @@ if __name__ == '__main__':
     handle.add(4,5,1)
     handle.add_point(6)
     handle.get_connected_component_num()
+
+    print("**********************************************************************")
+    print("Q8")
+    handle.clean()
+    f = open("../file/ddi_with_type_latest.txt")
+    line = f.readline()
+    cnt = 0
+    while line:
+        datalist = line.split()
+        handle.add(int(datalist[0]), int(datalist[1]), int(datalist[2]))
+        line = f.readline()
+        cnt = cnt + 1
+
+    print(handle.get_Q8_result())
