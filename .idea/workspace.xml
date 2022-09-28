@@ -75,7 +75,7 @@
       <workItem from="1664325163588" duration="513000" />
       <workItem from="1664342662486" duration="8125000" />
       <workItem from="1664351949997" duration="293000" />
-      <workItem from="1664352249544" duration="9902000" />
+      <workItem from="1664352249544" duration="11517000" />
     </task>
     <servers />
   </component>
@@ -98,14 +98,14 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/lab1/graph.py</url>
-          <line>260</line>
+          <line>261</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/NPU_AI_courses$main.coverage" NAME="main Coverage Results" MODIFIED="1664364107078" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lab1" />
+    <SUITE FILE_PATH="coverage/NPU_AI_courses$main.coverage" NAME="main Coverage Results" MODIFIED="1664365735934" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lab1" />
     <SUITE FILE_PATH="coverage/NPU_AI_courses$graph.coverage" NAME="graph Coverage Results" MODIFIED="1664302875545" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lab1" />
   </component>
 </project>
