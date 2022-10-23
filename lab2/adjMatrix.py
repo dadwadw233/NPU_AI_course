@@ -6,11 +6,10 @@ import seaborn as sns
 class Matrix:
     m = []
     n = 0
-    asm = []
 
     def __int__(self, size):
         self.n = size
-        self.m = [[0]*(size)]*(size)
+        self.m = [[0] * size] * size
 
     def init_matrix(self,file_path):
         f = open(file_path)
