@@ -2,8 +2,6 @@ import numpy
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas
-
-
 class Matrix:
     matrix = []
     n = 0
