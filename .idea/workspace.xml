@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cc7e9320-b302-48ec-a9af-02bb84606f17" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/lab2/interactionMatrix.py" beforeDir="false" afterPath="$PROJECT_DIR$/lab2/interactionMatrix.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab2/adjMatrix.py" beforeDir="false" afterPath="$PROJECT_DIR$/lab2/adjMatrix.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab2/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/lab2/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +114,7 @@
       <workItem from="1665815365213" duration="13000" />
       <workItem from="1666471479074" duration="13817000" />
       <workItem from="1666494152698" duration="3109000" />
-      <workItem from="1666497271806" duration="6650000" />
+      <workItem from="1666497271806" duration="7823000" />
     </task>
     <servers />
   </component>
@@ -132,7 +134,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/NPU_AI_courses$main.coverage" NAME="main Coverage Results" MODIFIED="1666472260954" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lab1" />
-    <SUITE FILE_PATH="coverage/NPU_AI_courses$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1666506781146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lab2" />
+    <SUITE FILE_PATH="coverage/NPU_AI_courses$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1666508382409" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lab2" />
     <SUITE FILE_PATH="coverage/NPU_AI_courses$graph.coverage" NAME="graph Coverage Results" MODIFIED="1664302875545" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lab1" />
   </component>
 </project>
