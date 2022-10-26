@@ -1,9 +1,11 @@
-import numpy
 import numpy as np
 import matplotlib.pyplot as plt
-import pandas
+from sklearn.decomposition import PCA
+
+
 class Matrix:
     matrix = []
+    ppi = []
     n = 0
     m = 0
     group = []
@@ -24,7 +26,18 @@ class Matrix:
 
         self.n = len(self.matrix)
         self.m = len(self.matrix[0])
-        # print(self.m)
+        print(self.m)  # 19
+        print(self.n)  # 383
+
+    def init_ppi(self, file_path):
+        f = open(file_path)
+        line = f.readline()
+        cnt = 0
+        while line:
+            datalist = line.split()
+            self.ppi.append(list(map(int, datalist)))
+            cnt = cnt + 1
+            line = f.readline()
 
     def classify(self):
         for i in range(self.m):
@@ -36,6 +49,11 @@ class Matrix:
 
     def calculate(self):
         # print(self.group)
+        # 先对矩阵进行降维
+        global dis_e_group, dis_c_group
+        pca = PCA(n_components='mle')
+        ppi_ = pca.fit_transform(self.ppi)
+        print(len(ppi_[0]))
         intra_dis_eucl = []
         intra_dis_cos = []
         inter_dis_eucl = []
@@ -45,39 +63,43 @@ class Matrix:
             dis_e = 0
             dis_c = 0
             for j in range(len(self.group[i])):
-                a = np.array(self.matrix[self.group[i][j]])
+                a = np.array(ppi_[self.group[i][j]])
                 for k in range(len(self.group[i])):
-                    b = np.array(self.matrix[self.group[i][k]])
+                    if j == k:
+                        continue
+                    b = np.array(ppi_[self.group[i][k]])
                     dis_e += np.linalg.norm(a - b)
-                    dis_c += 1 - (np.dot(a, b) / (np.sqrt(np.sum(np.square(a))) * np.sqrt(np.sum(np.square(b)))))
+                    dis_c += 1 - (np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b)))
 
-            intra_dis_eucl.append(dis_e / (len(self.group[i]) * len(self.group[i])))
-            intra_dis_cos.append(dis_c / (len(self.group[i]) * len(self.group[i])))
+            num = (len(self.group[i]) * len(self.group[i])) - 1
+            if len(self.group[i]) == 1:
+                num = num + 1
+            intra_dis_eucl.append(format(dis_e / num, '.3f'))
+            intra_dis_cos.append(format(dis_c / num, '.3f'))
 
-        dis_e = 0
-        dis_c = 0
-        dis_e_group = 0
-        dis_c_group = 0
         for i in range(self.m):
+            dis_e_group = 0
+            dis_c_group = 0
             for ii in range(self.m):
+                dis_e = 0
+                dis_c = 0
                 for j in range(len(self.group[i])):
-                    a = np.array(self.matrix[self.group[i][j]])
+                    a = np.array(ppi_[self.group[i][j]])
                     for jj in range(len(self.group[ii])):
-                        b = np.array(self.matrix[self.group[ii][jj]])
+                        b = np.array(ppi_[self.group[ii][jj]])
                         if i == ii:
                             dis_e += 0
                             dis_c += 0
+                            break
                         else:
                             dis_e += np.linalg.norm(a - b)
-                            dis_c += 1 - (np.dot(a, b) / (np.sqrt(np.sum(np.square(a))) * np.sqrt(np.sum(np.square(b)))))
+                            dis_c += 1 - (np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b)))
+
                 dis_e_group += (dis_e / (len(self.group[i]) * len(self.group[ii])))
                 dis_c_group += (dis_c / (len(self.group[i]) * len(self.group[ii])))
 
-            inter_dis_eucl.append(dis_e_group / (self.m * self.m))
-            inter_dis_cos.append(dis_c_group / (self.m * self.m))
-            dis_c_group = 0
-            dis_e_group = 0
-
+            inter_dis_eucl.append(format(dis_e_group / (self.m - 1), '.3f'))
+            inter_dis_cos.append(format(dis_c_group / (self.m - 1), '.3f'))
 
         maxlen = 0
         for i in range(self.m):
@@ -104,7 +126,7 @@ class Matrix:
         tab = plt.table(cellText=data, colLabels=col, rowLabels=row, cellLoc="center", loc='center')
 
         plt.axis('off')
-        # plt.savefig('../output/di.png')
+        plt.savefig('../output/di.png')
         plt.show()
 
         col = []
