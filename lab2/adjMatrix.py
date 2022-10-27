@@ -73,7 +73,7 @@ class Matrix:
 
         for i in range(len(self.group)):
             for j in range(len(self.group[i])):
-                if(map[self.group[i][j]] == 0):
+                if map[self.group[i][j]] == 0:
                     _hot_matrix.append(hot_matrix[self.group[i][j]])
                     map[self.group[i][j]] = 1
 
@@ -84,11 +84,11 @@ class Matrix:
         _hot_matrix = np.array(_hot_matrix)
 
 
-        f, (ax1, ax2, ax3) = plt.subplots(figsize=(10, 10), nrows=3)
-        sns.heatmap(hot_matrix, ax=ax1, cmap='RdBu_r', center=0, square=True)
+        f, (ax1) = plt.subplots(figsize=(10, 10), nrows=1)
+        #sns.heatmap(hot_matrix, ax=ax1, cmap='RdBu_r', center=0, square=True)
         #sns.heatmap(hot_matrix, ax=ax1 ,square=True)
-        sns.heatmap(hot_matrix_, ax=ax2, cmap='RdBu_r', center=0, square=True)
-        sns.heatmap(_hot_matrix, ax=ax3, cmap='RdBu_r', center=0, square=True)
+        #sns.heatmap(hot_matrix_, ax=ax1, cmap='RdBu_r', center=0, square=True)
+        sns.heatmap(_hot_matrix, ax=ax1, cmap='RdBu_r', center=0, square=True)
         plt.title("heatmap")
-        plt.savefig('../output/hotmap.png')
+        # plt.savefig('../output/heatmap.png')
         plt.show()

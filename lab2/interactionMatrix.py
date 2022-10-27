@@ -71,9 +71,9 @@ class Matrix:
                     dis_e += np.linalg.norm(a - b)
                     dis_c += 1 - (np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b)))
 
-            num = (len(self.group[i]) * len(self.group[i])) - 1
+            num = (len(self.group[i]) * len(self.group[i]))-len(self.group[i])
             if len(self.group[i]) == 1:
-                num = num + 1
+                num = num+1
             intra_dis_eucl.append(format(dis_e / num, '.3f'))
             intra_dis_cos.append(format(dis_c / num, '.3f'))
 
@@ -126,7 +126,7 @@ class Matrix:
         tab = plt.table(cellText=data, colLabels=col, rowLabels=row, cellLoc="center", loc='center')
 
         plt.axis('off')
-        plt.savefig('../output/di.png')
+        # plt.savefig('../output/di.png')
         plt.show()
 
         col = []
